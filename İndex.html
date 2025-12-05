@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Test Oyunu</title>
+<style>
+  body {
+    background-color: #c6b18b;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .container {
+    background-color: #fff3e0;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 300px;
+  }
+  h1 {
+    margin-bottom: 20px;
+    color: #5a3e2b;
+  }
+  button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #5a3e2b;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  button:hover {
+    transform: scale(1.1);
+  }
+  #result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Mini Test Oyunu</h1>
+  <p id="question">Dünya yuvarlaktır. Doğru mu Yanlış mı?</p>
+  <button onclick="checkAnswer(true)">Doğru</button>
+  <button onclick="checkAnswer(false)">Yanlış</button>
+  <div id="result"></div>
+</div>
+
+<script>
+const questions = [
+  { q: "Dünya yuvarlaktır.", a: true },
+  { q: "Güneş Dünya etrafında döner.", a: false },
+  { q: "Su 100°C’de kaynar.", a: true },
+  { q: "Kediler köpeklerden büyüktür.", a: false }
+];
+
+let current = 0;
+
+function checkAnswer(answer) {
+  const result = document.getElementById("result");
+  if (answer === questions[current].a) {
+    result.textContent = "Doğru! 🎉";
+  } else {
+    result.textContent = "Yanlış! ❌";
+  }
+  current++;
+  if (current < questions.length) {
+    document.getElementById("question").textContent = questions[current].q;
+  } else {
+    document.getElementById("question").textContent = "Test bitti!";
+    document.querySelectorAll("button").forEach(btn => btn.style.display = "none");
+  }
+}
+</script>
+</body>
+</html>
